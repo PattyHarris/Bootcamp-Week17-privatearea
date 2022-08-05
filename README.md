@@ -15,12 +15,16 @@ EMAIL_FROM=Your name <you@email.com>
 NEXTAUTH_URL=http://localhost:3000
 SECRET=<ENTER A UNIQUE STRING HERE>
 ```
+
 3. Add 'pages/api/auth/[...nextauth].js' as we have done in the past.
 4. Add the usual 4 schemas to schema.prisma and run the migration:
+
 ```
 npx prisma migrate dev
 ```
-5. Add the 'SessionProvide' wrapper to '_apps.js':
+
+5. Add the 'SessionProvide' wrapper to '\_apps.js':
+
 ```
 import { SessionProvider } from 'next-auth/react'
 .....
@@ -31,7 +35,9 @@ return (
 	</SessionProvider>
 )
 ```
+
 6. Refactor 'index.js' to contain minimal content:
+
 ```
 import Head from 'next/head'
 
@@ -49,3 +55,8 @@ export default function Home() {
   )
 }
 ```
+
+## Create the Home Page
+
+1. Refactor the home page to provide some content about the private membership area.
+2.
