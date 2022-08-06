@@ -59,4 +59,9 @@ export default function Home() {
 ## Create the Home Page
 
 1. Refactor the home page to provide some content about the private membership area.
-2.
+
+## Implement Authentication
+
+1. As with other projects, we'll point members to '/api/auth/signin'. Change the link that allows a user to become a supporter to use this API (currently it's a '#'). I use the 'next/link' to eliminate warnings.
+2. Once logged in, we'll have a 'session' which can then use to direct the user to the 'members' page.
+3. In 'pages/members.js', if there is no session, the user is redirected back to the home page.  And likewise, in 'pages/index.js', if there IS a session, the user is redirected to the 'members' page.
