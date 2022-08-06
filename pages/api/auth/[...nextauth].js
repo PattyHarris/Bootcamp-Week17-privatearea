@@ -25,6 +25,7 @@ export default NextAuth({
   callbacks: {
     session: async ({ session, user }) => {
       session.user.id = user.id;
+      session.user.isSubscriber = user.isSubscriber;
       return Promise.resolve(session);
     },
   },

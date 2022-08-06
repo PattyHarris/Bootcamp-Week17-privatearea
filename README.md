@@ -64,4 +64,10 @@ export default function Home() {
 
 1. As with other projects, we'll point members to '/api/auth/signin'. Change the link that allows a user to become a supporter to use this API (currently it's a '#'). I use the 'next/link' to eliminate warnings.
 2. Once logged in, we'll have a 'session' which can then use to direct the user to the 'members' page.
-3. In 'pages/members.js', if there is no session, the user is redirected back to the home page.  And likewise, in 'pages/index.js', if there IS a session, the user is redirected to the 'members' page.
+3. In 'pages/members.js', if there is no session, the user is redirected back to the home page. And likewise, in 'pages/index.js', if there IS a session, the user is redirected to the 'members' page.
+
+## Detect User as Subscriber
+
+1. Update the schema to track whether the user is a subscriber (and run 'migrate').
+2. In 'pages/api/auth/[...nextauth].js', return the new subscriber flag in the 'callback' - this allows the 'isSubscriber' flag to be accessible with the session data.
+3. In the 'pages/members.js', if the user isn't a subscriber, redirect them to a new page, 'pages/join.js'.
