@@ -4,6 +4,9 @@ This is a website which has a members-only area. Members pay a monthly fee using
 
 The app will have a home page with a description of what's behind the paywall. People can login/subscribe. After they login, the logged in user will see content of some sort that can be purchased?
 
+The final project can be found here:
+https://github.com/flaviocopes/bootcamp-2022-week-17-privatearea
+
 ## Setup
 
 1. Same setup as with other lessons that require Next.js, Tailwind, Prisma, and NextAuth.js.
@@ -167,4 +170,42 @@ export async function getServerSideProps(context) {
 9. To 'pages/success.js', add a 'useEffect' call to trigger an API request to the endpoint '/api/stripe/success'. We pass the session ID into that POST request.
 10. The endpoint above is handled by 'pages/api/stripe/success.js'. Here the session ID is used to retrieve the 'client_reference_id'. We can then update the 'isSubscriber' flag in the database using the latter client ID.
 11. Assuming no problems returned in 'pages/success.js', the user is then redirected back to the 'pages/members.js'. Here, we're forcing the page to reload (meaning we don't use router.push() ) - otherwise, we wouldn't see that the user is now a subscriber.
-12.
+
+## Display Markdown File for Subscribers
+
+1. If the user is a subscriber, they are able to view a markdown file.
+2. The owner of the website wants update a single Markdown file that is stored in the repository. It is then used to update the contents of the website.
+3. Install some libraries to enable parsing of markdown files:
+
+```
+npm i gray-matter remark remark-html
+```
+
+4. Add a test markdown file to the project root directory with contents like this:
+
+```
+# Testing a title
+
+testing content
+
+- testing a list
+- testing a list
+
+Great
+
+[testing a link](https://google.com)
+```
+
+5. Create 'lib/markdown.js' file to do the actual work of parsing the markdown file. The data is returned as HTML string.
+6. Import the new 'getMarkdown' function in 'pages/members.js' - this will be used in 'getServerSideProps' and then passed as a prop to 'Members'.
+7. Inside the JSX in 'pages/members.js', we add the following:
+
+```
+<div
+  dangerouslySetInnerHTML={{ __html: markdown }}
+/>
+```
+
+The markdown variable contains an HTML string and is the scary way React allows us to embed HTML into JSX. 8. To style the markdown, add some CSS classes to the 'styles/globals.css' file, where we use '@apply' to set Tailwind classes to CSS classes. Add the 'markdown' glass to the above 'div'.
+
+Seems to work......

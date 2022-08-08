@@ -21,6 +21,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  isSubscriber  Boolean   @default(false)
 }
 
 model VerificationToken {
@@ -58,5 +59,4 @@ model Session {
   userId        String
   expires       DateTime
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  isSubscriber  Boolean  @default(false)
 }

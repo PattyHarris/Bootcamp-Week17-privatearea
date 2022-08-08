@@ -27,6 +27,7 @@ export default function Join() {
   return (
     <div>
       <Script src="https://js.stripe.com/v3/" />
+      
       <Head>
         <title>Private Area</title>
         <meta name="description" content="Private Area" />
